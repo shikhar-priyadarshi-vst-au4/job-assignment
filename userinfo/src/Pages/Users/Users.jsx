@@ -1,6 +1,7 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { connect } from "react-redux";
-import { update, Delete, retrieve } from "../../Redux/listReducer/list.actions";
+import { useHistory } from "react-router-dom";
+import { update, Delete } from "../../Redux/listReducer/list.actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 const styled = {
@@ -19,7 +20,9 @@ const styled = {
   field: { padding: "2em 2em" },
 };
 const List = ({ Lists, message, ...props }) => {
-  console.log(Lists);
+  const [modal, setModal] = useState(false);
+  let history = useHistory();
+  console.log(props);
   return (
     <Fragment>
       <table style={styled.table}>
@@ -61,7 +64,9 @@ const List = ({ Lists, message, ...props }) => {
                 <FontAwesomeIcon
                   icon={faEdit}
                   style={{ cursor: "pointer" }}
-                  onClick={() => {}}
+                  onClick={() =>
+                    history.push({ pathname: "/user/form", state: { val } })
+                  }
                 />
               </td>
             </tr>

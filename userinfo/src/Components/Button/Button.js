@@ -11,7 +11,7 @@ const styled = {
 export const Button = (props) => {
   return (
     <Fragment>
-      {props.button === "Create" && (
+      {["Create", "Update"].includes(props.button) && (
         <button style={styled.button} onClick={() => props.submit()}>
           {props.button}
         </button>

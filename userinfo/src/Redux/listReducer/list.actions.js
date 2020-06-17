@@ -12,6 +12,6 @@ export const Delete = (data) => {
   return { type: types.delete, payload: data };
 };
 
-export const update = (data) => {
-  return { type: types.update, payload: data };
+export const update = (prev, data) => {
+  return { type: types.update, payload: { prev, data } };
 };

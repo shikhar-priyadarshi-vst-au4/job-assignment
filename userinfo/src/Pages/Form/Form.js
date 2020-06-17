@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import Input from "../../Components/Input/Input";
 import { connect } from "react-redux";
 import { Button } from "../../Components/Button/Button";
-import { create } from "../../Redux/listReducer/list.actions";
+import { create, update } from "../../Redux/listReducer/list.actions";
+import { useLocation } from "react-router-dom";
 const Validator = (e) => {
   if (["Name", "Portfolio"].includes(e.target.name)) {
     let status = /[a-zA-Z]+/g.test(e.target.value);
@@ -21,6 +22,7 @@ const Validator = (e) => {
 };
 
 const Form = (props) => {
+  const location = useLocation();
   let initState = {
     Name: { value: "", helpermsg: "" },
     Email: { value: "", helpermsg: "" },
@@ -30,7 +32,10 @@ const Form = (props) => {
     Gender: "",
     Skills: "",
   };
-  const [data, setData] = useState(initState);
+  const [prev, setPrev] = useState(!!location.state ? location.state.val : "");
+  const [data, setData] = useState(
+    !!location.state ? location.state.val : initState
+  );
   const changeHandler = (e) => {
     let { helpermsg } = Validator(e);
     if (["Name", "Email", "DOB", "Portfolio"].includes(e.target.name)) {
@@ -50,7 +55,7 @@ const Form = (props) => {
       !!data.Hobbies &&
       !!data.Gender
     ) {
-      props.dispatch(create(data));
+      props.dispatch(!!location.state ? update(prev, data) : create(data));
     }
   };
   return (
@@ -136,7 +141,10 @@ const Form = (props) => {
         />
       </div>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <Button button={"Create"} submit={submit} />
+        <Button
+          button={!!location.state ? "Update" : "Create"}
+          submit={submit}
+        />
       </div>
     </div>
   );
