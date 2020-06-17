@@ -11,6 +11,8 @@ export const listReducer = (state = initState, { type, payload }) => {
       return { ...state, Lists: [...state.Lists, payload] };
     case types.delete:
       return { ...state, Lists: state.Lists.filter((v) => v !== payload) };
+    case types.clearall:
+      return initState;
     case types.update:
       let index = state.Lists.indexOf(payload.prev);
       state.Lists.splice(index, 1, payload.data);

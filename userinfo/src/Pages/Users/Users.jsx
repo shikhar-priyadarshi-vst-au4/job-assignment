@@ -20,7 +20,6 @@ const styled = {
   field: { padding: "2em 2em" },
 };
 const List = ({ Lists, message, ...props }) => {
-  const [modal, setModal] = useState(false);
   let history = useHistory();
   console.log(props);
   return (

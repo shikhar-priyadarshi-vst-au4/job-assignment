@@ -3,7 +3,9 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { styled } from "./App.style";
 import Form from "./Form/Form";
 import List from "./Users/Users.jsx";
-function App() {
+import { connect } from "react-redux";
+import { clearall } from "../Redux/listReducer/list.actions";
+function App(props) {
   return (
     <Router>
       <header style={styled.nav.header}>
@@ -13,6 +15,14 @@ function App() {
         <Link to={"/users/list"} style={styled.nav.link}>
           Check Your List
         </Link>
+        {
+          <span
+            style={styled.nav.clearall}
+            onClick={() => props.dispatch(clearall())}
+          >
+            Clear all
+          </span>
+        }
       </header>
       <Switch>
         <Route path={"/user/form"} component={Form} exact />
@@ -30,17 +40,4 @@ function App() {
   );
 }
 
-// Name
-// Email
-// DOB
-// Portfolio Link
-// Hobbies [Checkbox]
-// Gender [Radio]
-// Skills [Checkbox]
-
-export default App;
-
-// {/* <div className="App">
-//       <header className="App-header">
-//         </header>
-//     </div> */}
+export default connect()(App);

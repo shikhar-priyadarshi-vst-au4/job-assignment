@@ -11,7 +11,9 @@ export const retrieve = () => {
 export const Delete = (data) => {
   return { type: types.delete, payload: data };
 };
-
+export const clearall = () => {
+  return { type: types.clearall, payload: "" };
+};
 export const update = (prev, data) => {
   return { type: types.update, payload: { prev, data } };
 };
