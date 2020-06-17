@@ -54,7 +54,7 @@ const Form = (props) => {
     }
   };
   return (
-    <form>
+    <div>
       <div>
         <Input
           part={"input"}
@@ -138,7 +138,7 @@ const Form = (props) => {
       <div style={{ display: "flex", justifyContent: "center" }}>
         <Button button={"Create"} submit={submit} />
       </div>
-    </form>
+    </div>
   );
 };
 
