@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Input from "../../Components/Input/Input";
 import { connect } from "react-redux";
 import { Button } from "../../Components/Button/Button";
+import { create } from "../../Redux/listReducer/list.actions";
 const Validator = (e) => {
   if (["Name", "Portfolio"].includes(e.target.name)) {
     let status = /[a-zA-Z]+/g.test(e.target.value);
@@ -49,7 +50,7 @@ const Form = (props) => {
       !!data.Hobbies &&
       !!data.Gender
     ) {
-      console.log(data);
+      props.dispatch(create(data));
     }
   };
   return (
