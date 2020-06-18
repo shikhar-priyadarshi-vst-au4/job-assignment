@@ -29,7 +29,9 @@ function Input(props) {
               style={styled.input}
               onChange={(e) => props.changeHandler(e)}
             />
-            <small>{props.helpermsg}</small>
+            <small style={{ color: `${!props.value ? "#e7305b" : ""}` }}>
+              {!props.value ? "Field is empty" : props.helpermsg}
+            </small>
           </Fragment>
         )}
 

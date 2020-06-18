@@ -4,22 +4,7 @@ import { connect } from "react-redux";
 import { Button } from "../../Components/Button/Button";
 import { create, update } from "../../Redux/listReducer/list.actions";
 import { useLocation } from "react-router-dom";
-const Validator = (e) => {
-  if (["Name", "Portfolio"].includes(e.target.name)) {
-    let status = /[a-zA-Z]+/g.test(e.target.value);
-    console.log(status);
-    if (!status) {
-      return { helpermsg: "a-z or A-Z can only be used" };
-    }
-  } else if (["Email"].includes(e.target.name)) {
-    let status = /.+@.[a-zA-Z]+.com/.test(e.target.value);
-    console.log(status);
-    if (!status) {
-      return { helpermsg: "incorrect email format" };
-    }
-  }
-  return { helpermsg: "" };
-};
+import { checkEmpty, Validator } from "./utils";
 
 const Form = (props) => {
   const location = useLocation();
@@ -46,15 +31,7 @@ const Form = (props) => {
     }
   };
   const submit = () => {
-    if (
-      !!data.Name.value &&
-      !!data.Email.value &&
-      !!data.DOB.value &&
-      !!data.Portfolio.value &&
-      !!data.Skills &&
-      !!data.Hobbies &&
-      !!data.Gender
-    ) {
+    if (checkEmpty(data)) {
       props.dispatch(!!location.state ? update(prev, data) : create(data));
     }
   };

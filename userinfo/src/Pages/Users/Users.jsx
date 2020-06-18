@@ -1,7 +1,7 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { update, Delete } from "../../Redux/listReducer/list.actions";
+import { Delete } from "../../Redux/listReducer/list.actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 const styled = {
